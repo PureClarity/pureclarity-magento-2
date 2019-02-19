@@ -121,7 +121,6 @@ class Search implements AdapterInterface
                     foreach ($personalProducts as $item) {
                         if (array_key_exists($item['Id'], $documents)) {
                             $parsedPersonalProducts[] = $item;
-                            unset($documents[$item['Id']]);
                         }
                     }
                     $result['personalizedProducts'] = $parsedPersonalProducts;
