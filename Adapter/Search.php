@@ -115,16 +115,27 @@ class Search implements AdapterInterface
                 $documents = $this->getDocuments($table);
                 $newDocuments = [];
                 
+                $documentsUnset = [];
                 if (array_key_exists('personalizedProducts', $result)) {
                     $parsedPersonalProducts = [];
                     $personalProducts = $result['personalizedProducts'];
+
                     foreach ($personalProducts as $item) {
                         if (array_key_exists($item['Id'], $documents)) {
                             $parsedPersonalProducts[] = $item;
+                            $documentsUnset[] = $documents[$item['Id']];
+                            unset($documents[$item['Id']]);
                         }
                     }
+
+                    if (count($documents) == 0 && count($parsedPersonalProducts) > 0) {
+                        $documents = $documentsUnset;
+                        $parsedPersonalProducts = [];
+                    }
+
                     $result['personalizedProducts'] = $parsedPersonalProducts;
                     $this->service->updateSearchResult($result);
+                    
                 }
             }
         } else {
