@@ -21,6 +21,12 @@
     <type name="Magento\Catalog\Model\Category\DataProvider">
         <plugin name="pureclarity_core_dataprovider_plugin" type="Pureclarity\Core\Plugin\Category\DataProvider" />
     </type>
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="pureclarity_core_toolbar_config" type="Pureclarity\Core\Plugin\Model\Config" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="pureclarity_core_toolbar" type="Pureclarity\Core\Plugin\Model\Product\ProductList\Toolbar" />
+    </type>
     <preference for="Magento\Framework\Search\Adapter\Mysql\Adapter" type="Pureclarity\Core\Adapter\Search" />
 
     <type name="Magento\Framework\HTTP\PhpEnvironment\RemoteAddress">
