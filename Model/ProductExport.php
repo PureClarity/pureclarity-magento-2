@@ -27,7 +27,7 @@ class ProductExport extends \Magento\Framework\Model\AbstractModel
     protected $coreResourceProductCollectionFactory;
     protected $catalogResourceModelCategoryCollectionFactory;
     protected $catalogImageHelper;
-    protected $catalogInventoryStockItemFactory;
+    protected $stockRegistry;
     protected $configurableProductProductTypeConfigurableFactory;
     protected $directoryHelper;
     protected $catalogConfig;
@@ -52,7 +52,7 @@ class ProductExport extends \Magento\Framework\Model\AbstractModel
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $coreResourceProductCollectionFactory,
         \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $catalogResourceModelCategoryCollectionFactory,
         \Magento\Catalog\Helper\Image $catalogImageHelper,
-        \Magento\CatalogInventory\Model\Stock\ItemFactory $catalogInventoryStockItemFactory,
+        \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry,
         \Magento\ConfigurableProduct\Model\Product\Type\ConfigurableFactory $configurableProductProductTypeConfigurableFactory,
         \Magento\Directory\Helper\Data $directoryHelper,
         \Magento\Catalog\Model\Config $catalogConfig,
@@ -75,7 +75,7 @@ class ProductExport extends \Magento\Framework\Model\AbstractModel
         $this->coreResourceProductCollectionFactory = $coreResourceProductCollectionFactory;
         $this->catalogResourceModelCategoryCollectionFactory = $catalogResourceModelCategoryCollectionFactory;
         $this->catalogImageHelper = $catalogImageHelper;
-        $this->catalogInventoryStockItemFactory = $catalogInventoryStockItemFactory;
+        $this->stockRegistry = $stockRegistry;
         $this->configurableProductProductTypeConfigurableFactory = $configurableProductProductTypeConfigurableFactory;
         $this->directoryHelper = $directoryHelper;
         $this->catalogConfig = $catalogConfig;
@@ -273,7 +273,7 @@ class ProductExport extends \Magento\Framework\Model\AbstractModel
                 "Categories" => $categoryIds,
                 "MagentoCategories" => array_values(array_unique($categoryList, SORT_STRING)),
                 "MagentoProductType" => $product->getTypeId(),
-                "InStock" => $product->getExtensionAttributes($this->catalogInventoryStockItemFactory->create()->setProduct($product)->getIsInStock() == 1) ? true : false
+                "InStock" => $this->stockRegistry->getStockItem($product->getId())->getIsInStock() ? 'true' : 'false'
             ];
 
             if (sizeof($allImages) > 0) {
