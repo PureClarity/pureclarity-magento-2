@@ -80,7 +80,7 @@ class Feed extends \Magento\Framework\Model\AbstractModel
      * degrading progress feedback for user
      * @param $pageSize integer
      */
-    function sendProducts($pageSize = 1)
+    function sendProducts($pageSize = 50)
     {
 
         if (! $this->isInitialised()) {
