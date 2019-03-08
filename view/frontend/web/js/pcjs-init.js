@@ -149,7 +149,7 @@ require(['jquery', 'priceBox'], function ($, priceBox) {
     })(window, document, 'script', window.pureclarityConfig.apiUrl, '_pc');
 
     // Execute tracking events
-
+    
     if (pureclarityConfig.state.isLogout) {
         _pc('customer_logout');
     }
@@ -157,14 +157,12 @@ require(['jquery', 'priceBox'], function ($, priceBox) {
     if (!pureclarityConfig.state.serversideMode) {
         _pc('currency', pureclarityConfig.currency);
         _pc('page_view');
-        var parsedResults = false;
         _pc('callback_event', function (type) {
-            if (type == "search") {
-                var $sideBarAdditional = $(".sidebar-additional");
-                $sideBarAdditional.appendTo($("#pc-filter"));
-            }
-            if (!parsedResults) {
-                parsedResults = true;
+            require([pureclarityConfig.swatchRenderer], function () {
+                if (type == "search") {
+                    var $sideBarAdditional = $(".sidebar-additional");
+                    $sideBarAdditional.appendTo($("#pc-filter"));
+                }
                 var items = $("[pureclarity-data-item]");
                 for (var i=0; i<items.length; i++) {
                     var $item = $(items[i]);
@@ -228,12 +226,11 @@ require(['jquery', 'priceBox'], function ($, priceBox) {
                         var swatchOptions = $item.find(".swatch-opt");
                         $(swatchOptions).each(function () {
                             var option = $(this);
-                            console.log(option.data().pureclarityJsonconfig);
                             var jsonConfig = option.data().pureclarityJsonconfig;
                             var swatchRenderJson = option.data().pureclaritySwatchrenderjson;
                             if (jsonConfig && swatchRenderJson) {
                                 swatchRenderJson.numberToShow = pureclarityConfig.swatchesToShow;
-                                window.pureclarityConfig.swatchRenderer(swatchRenderJson);
+                                option.SwatchRenderer(swatchRenderJson);
                                 var priceBoxSelector = "[data-role=priceBox][data-product-id=" + id + "]";
                                 $(priceBoxSelector).priceBox({
                                     'priceConfig': {
@@ -245,8 +242,8 @@ require(['jquery', 'priceBox'], function ($, priceBox) {
                         });
                     }
                 }
-            }
-    });
+            });
+        });
 
         if (pureclarityConfig.product) {
             _pc("product_view", { id: pureclarityConfig.product.Id });
@@ -262,4 +259,5 @@ require(['jquery', 'priceBox'], function ($, priceBox) {
     } else {
         _pc('set_cache_filter', { _size: 2000, requesttype: "both" });
     }
+
 });
