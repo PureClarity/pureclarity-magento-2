@@ -488,10 +488,8 @@ class ProductExport extends \Magento\Framework\Model\AbstractModel
                                         ->getUsedProducts(null, $product);
                 foreach ($associatedProducts as $associatedProduct) {
                     if (!$associatedProduct->isDisabled()) {
-                        $productModel = $this->catalogProductFactory->create()->load($associatedProduct->getId());
-
                         //base prices
-                        $variationPrices = $this->getProductPrices($productModel, true);
+                        $variationPrices = $this->getProductPrices($associatedProduct, true);
                         if ($lowestPrice == 0 || $variationPrices['basePrices']['min'] < $lowestPrice) {
                             $lowestPrice = $variationPrices['basePrices']['min'];
                         }
