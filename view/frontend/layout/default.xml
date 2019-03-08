@@ -2,6 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <head>
         <css src="Pureclarity_Core::css/pureclarity.css"/>
+        <script src="Pureclarity_Core::js/pcjs-init.js"/>
     </head>
     <body>
         <referenceBlock name="head.additional">

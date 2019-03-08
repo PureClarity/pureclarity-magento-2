@@ -1,7 +1,5 @@
 var config = {
-    map: {
-        '*': {
-            pcjs: 'Pureclarity_Core/js/pcjs'
-        }
+    'paths': {
+        pcjs: 'Pureclarity_Core/js/pcjs'
     }
 };
