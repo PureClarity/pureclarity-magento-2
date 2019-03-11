@@ -33,6 +33,7 @@ class Service extends \Magento\Framework\App\Helper\AbstractHelper
     protected $catalogSearchHelper;
     protected $toolBar;
     protected $request;
+    protected $responseFactory;
 
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -46,7 +47,8 @@ class Service extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\CatalogSearch\Helper\Data $catalogSearchHelper,
         \Magento\Catalog\Model\Product\ProductList\Toolbar $toolBar,
         \Magento\Framework\App\Request\Http $request,
-        \Magento\Framework\Registry $registry
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\App\ResponseFactory $responseFactory
     ) {
         $this->logger = $context->getLogger();
         $this->registry = $registry;
@@ -60,6 +62,7 @@ class Service extends \Magento\Framework\App\Helper\AbstractHelper
         $this->catalogSearchHelper = $catalogSearchHelper;
         $this->toolBar = $toolBar;
         $this->request = $request;
+        $this->responseFactory = $responseFactory;
 
         $this->category = $this->registry->registry('current_category');
         parent::__construct($context);
@@ -297,6 +300,14 @@ class Service extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getSearchResult()
     {
+        if($this->result && 
+            isset($this->result['search']) && 
+            isset($this->result['search']['redirectUrl']) && 
+            !empty($this->result['search']['redirectUrl'])
+        ) {
+            $this->responseFactory->create()->setRedirect($this->result['search']['redirectUrl'])->sendResponse();
+            exit();
+        }
         
         if ($this->result &&
             array_key_exists('search', $this->result) &&
