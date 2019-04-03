@@ -6,4 +6,7 @@
     <event name="controller_action_postdispatch">
         <observer name="pureclarity_postdispatch" instance="Pureclarity\Core\Model\PostDispatchObserver" />
     </event>
+    <event name="customer_login">
+        <observer name="pureclarity_login_observer" instance="Pureclarity\Core\Observer\CustomerLogin" />
+    </event>
 </config>

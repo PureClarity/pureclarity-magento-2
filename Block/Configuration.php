@@ -64,6 +64,7 @@ class Configuration extends Template
                 "DOMSelector" => $this->getDOMSelector(),
                 "dataValue" => $this->getSearchDataValue()
             ],
+            "customer" => $this->getCustomerDetails(),
             "order" => $this->getOrder(),
             "baseUrl" => $this->coreHelper->getBaseUrl(),
             "formkey" => $formKey->getFormKey(),
@@ -75,6 +76,32 @@ class Configuration extends Template
         ];
     }
 
+    /**
+     * Returns customer data if we need to add a login event to the initialiazaiton process
+     *
+     * @return mixed[]
+     */
+    private function getCustomerDetails()
+    {
+        $customerData = [
+            'triggerLogin' => false
+        ];
+        
+        if ($this->customerSession->isLoggedIn() && $this->customerSession->getPureclarityTriggerLogin()) {
+            $customer = $this->customerSession->getCustomer();
+            $customerData['triggerLogin'] = true;
+            $customerData['customer'] = [
+                'userid' => $customer->getId(),
+                'email' => $customer->getEmail(),
+                'firstname' => $customer->getFirstname(),
+                'lastname' => $customer->getLastname(),
+                'prefix' => $customer->getPrefix()
+            ];
+            $this->customerSession->setPureclarityTriggerLogin(false);
+        }
+        
+        return $customerData;
+    }
     
     public function isActive()
     {

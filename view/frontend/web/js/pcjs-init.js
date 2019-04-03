@@ -148,6 +148,11 @@ require(['jquery', 'priceBox'], function ($, priceBox) {
         p.src = u;p.async=1;h.parentNode.insertBefore(p, h);
     })(window, document, 'script', window.pureclarityConfig.apiUrl, '_pc');
 
+    // Execute login cusotmer details event if needed
+    if (pureclarityConfig.customer.triggerLogin) {
+        _pc("customer_details", pureclarityConfig.customer.customer);
+    }
+    
     // Execute tracking events
     
     if (pureclarityConfig.state.isLogout) {
