@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_COMPOSE_FILE: "./docker-compose.yml"
-      EXTENSION_NAME: "Foo_Bar"
-      EXTENSION_PACKAGE_NAME: "foo/magento2-foobar"
+      EXTENSION_NAME: "Pureclarity_Core"
+      EXTENSION_PACKAGE_NAME: "pureclarity/pureclarity-magento-2"
 
     steps:
       - uses: actions/checkout@v2
