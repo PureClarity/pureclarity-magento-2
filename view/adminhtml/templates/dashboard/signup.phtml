@@ -38,7 +38,6 @@ $state = $block->getPureclarityStateViewModel();
     >
         <div class="pc-box-title-bar"><h3><?= $block->escapeHtml(__('Sign up for a 30-day free trial')) ?></h3></div>
         <div class="pc-box-content">
-            <p class="sign-up-subheading"><?= $block->escapeHtml(__('Try for Free today:')) ?></p>
             <ul>
                 <li><?= $block->escapeHtml(__('Get up and running in minutes')) ?></li>
                 <li><?= $block->escapeHtml(__('No credit card or contract required')) ?></li>
@@ -78,6 +77,20 @@ $state = $block->getPureclarityStateViewModel();
                             <label class="label" for="pc-sign-up-email"><?= $block->escapeHtml(__('Email')) ?></label>
                             <input data-validate='{"required":true, "email": true}' type="text" name="email"
                                    id="pc-sign-up-email"/>
+                        </p>
+                        <p class="pc-field">
+                            <label class="nr-label pc-tooltip-label" for="pc-sign-up-phone">
+                                <?= $block->escapeHtml(__('Phone Number')) ?>
+                            </label>
+                            <input type="text" name="phone" id="pc-sign-up-phone"/>
+                            <span class="pc-tooltip" id="pc-sign-up-phone-tooltip">?
+                                 <span class="pc-tooltip-text" id="pc-sign-up-phone-tooltip">
+                                <?= $block->escapeHtml(__(
+                                    'If you provide a phone number we will use it to contact you during your'
+                                    . ' free trial. It will not be used for sales calls.'
+                                )) ?>
+                                </span>
+                            </span>
                         </p>
                         <p class="pc-field">
                             <label class="label" for="pc-sign-up-company">

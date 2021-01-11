@@ -152,7 +152,8 @@ class RequestTest extends TestCase
             'store_name' => 'Store Name',
             'region' => 1,
             'url' => 'http://www.google.com/',
-            'store_id' => 1
+            'store_id' => 1,
+            'phone' => '123456789'
         ];
     }
 
@@ -376,6 +377,7 @@ class RequestTest extends TestCase
         $this->assertArrayHasKey('Url', $this->requestParams);
         $this->assertArrayHasKey('Password', $this->requestParams);
         $this->assertArrayHasKey('StoreName', $this->requestParams);
+        $this->assertArrayHasKey('Phone', $this->requestParams);
 
         // Validate state save was called correctly with correct values
         $signUpValues = json_decode($this->stateSaveValue, true);

@@ -229,7 +229,8 @@ class Request
             'TimeZone' => $this->storeData->getStoreTimezone($params['store_id']),
             'Url' => $params['url'],
             'Password' => $params['password'],
-            'StoreName' => $params['store_name']
+            'StoreName' => $params['store_name'],
+            'Phone' => $params['phone']
         ];
 
         return $this->serializer->serialize($requestData);

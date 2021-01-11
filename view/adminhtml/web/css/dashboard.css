@@ -247,13 +247,14 @@
 #pc-sign-up-form-content p.details {
     clear: both;
     vertical-align: middle;
-    height: 45px;
+    height: 40px;
 }
 
 #pc-sign-up-form-content label.label,
+#pc-sign-up-form-content label.nr-label,
 #pc-sign-up-form-content span.label {
     display: block;
-    margin: 0.5em 0.25em 0;
+    margin: 0.3em 0.25em 0;
     width: 21%;
     float: left;
     clear: left;
@@ -268,7 +269,7 @@
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 1;
-    margin-left: 10px;
+    margin-left: 2px;
     margin-top: .2rem;
     position: absolute;
     z-index: 1;
@@ -284,6 +285,47 @@
     padding:0;
 }
 
+.pc-tooltip {
+    position: relative;
+    border-bottom: 1px dotted black;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin-top:3px;
+}
+
+.pc-tooltip .pc-tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #379cba;
+    color: #000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 1.3rem;
+}
+
+.pc-tooltip .pc-tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #379cba transparent transparent transparent;
+}
+
+.pc-tooltip:hover .pc-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
 
 #pc-sign-up-form-content .right label.mage-error {
     margin: 0 0 0 30%;
@@ -306,6 +348,11 @@
     padding: 5px;
     margin-left: 2em;
     float: left;
+}
+
+#pc-sign-up-form-content input#pc-sign-up-phone {
+    width: 50%;
+    margin-right: 10px;
 }
 
 #pc-sign-up-form-content #pc-sign-up-response-holder {
