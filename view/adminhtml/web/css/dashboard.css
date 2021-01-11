@@ -92,10 +92,6 @@
 
 /** DASHBOARD CONTENT BOXES - GENERIC **/
 
-#pc-dashboard .pc-box {
-    float:left;
-    min-width: 420px;
-}
 
 #pc-dashboard .pc-box .pc-box-title-bar {
     border-top-left-radius: 3px;
@@ -119,7 +115,6 @@
 }
 
 #pc-dashboard .pc-box .pc-box-content {
-    height: 175px;
     background: #fff;
     padding: 28px 33px;
     font-size: 1.05em;
@@ -162,19 +157,114 @@
 
 /** DASHBOARD SIGN UP PAGE **/
 
-#pc-signup-col1 {
-    width: 63%;
-    float:left;
-    margin-right: 30px;
-}
-
 #pc-dashboard #pc-signup-col1 .pc-box {
     width: 100%;
 }
 
-#pc-signup-col2 {
-    width: 33%;
-    float:left;
+#pc-sign-up-form-content:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+@media only screen and (max-width: 1500px) {
+    #pc-dashboard {
+        margin: 0 auto;
+    }
+
+    #pc-sign-up-form-content .left {
+        float:none;
+        width:100%;
+        border-right: none;
+    }
+
+    #pc-sign-up-form-content .right {
+        float:none;
+        width:100%;
+    }
+
+    #pc-sign-up-form-content label.mage-error {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    #pc-sign-up-form-content .right label.mage-error {
+        margin: 0;
+    }
+
+    #pc-signup-col1:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    #pc-signup-col2 {
+        clear:both;
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #pc-dashboard {
+        margin: 0;
+    }
+
+    .pc-sign-up-modal .modal-inner-wrap {
+        width: 556px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    #pc-sign-up-form-content .left {
+        float:left;
+        width:50%;
+    }
+
+    #pc-sign-up-form-content .right {
+        float:right;
+        width:45%;
+    }
+}
+
+/**
+ ### CONFIGURED DASHBOARD INFO BOXES ###
+ */
+@media only screen and (min-width: 1501px) {
+
+    #pc-signup-col1 {
+        width: 58%;
+        float:left;
+        margin-right: 30px;
+    }
+
+    #pc-signup-col2 {
+        width: 33%;
+        float:left;
+    }
+
+    #pc-col1 {
+        width: 60%;
+        float:left;
+    }
+
+    #pc-col2 {
+        width: 40%;
+        float:left;
+    }
+
+    #pc-dashboard .pc-box {
+        float:left;
+        min-width: 420px;
+    }
+}
+
+@media only screen and (min-width: 1675px) {
+
+    #pc-signup-col1 {
+        width: 63%;
+    }
 }
 
 /** DASHBOARD SIGN UP BOX **/
@@ -233,16 +323,6 @@
     margin-top: 0;
 }
 
-#pc-sign-up-form-content .left {
-    float:left;
-    width:50%;
-}
-
-#pc-sign-up-form-content .right {
-    float:right;
-    width:45%;
-}
-
 #pc-sign-up-form-content p.pc-field,
 #pc-sign-up-form-content p.details {
     clear: both;
@@ -255,7 +335,7 @@
 #pc-sign-up-form-content span.label {
     display: block;
     margin: 0.3em 0.25em 0;
-    width: 21%;
+    width: 30%;
     float: left;
     clear: left;
     text-align: right;
@@ -888,66 +968,6 @@ svg .pc_donut_text {
 
 #pc-zone-modal-content #pc-zone-outputContainer {
     margin: 75px 0 0;
-}
-
-@media only screen and (max-width: 1500px) {
-    #pc-dashboard {
-        width:75%;
-        min-width:500px;
-        margin: 0 auto;
-    }
-
-    #pc-dashboard .pc-box {
-        width:75%;
-        margin: 23px 12.5% 0 ;
-    }
-
-    #pc-sign-up-form-content .left {
-        float:none;
-        width:100%;
-        border-right: none;
-    }
-
-    #pc-sign-up-form-content .right {
-        float:none;
-        width:100%;
-    }
-
-    #pc-sign-up-form-content label.mage-error {
-        width: 100%;
-        margin: 0;
-        text-align: center;
-    }
-
-    #pc-sign-up-form-content .right label.mage-error {
-        margin: 0;
-    }
-
-}
-
-@media only screen and (max-width: 1000px) {
-    #pc-dashboard {
-        margin: 0;
-    }
-
-    .pc-sign-up-modal .modal-inner-wrap {
-        width: 556px;
-    }
-}
-
-/**
- ### CONFIGURED DASHBOARD INFO BOXES ###
- */
-@media only screen and (min-width: 1501px) {
-    #pc-col1 {
-        width: 60%;
-        float:left;
-    }
-
-    #pc-col2 {
-        width: 40%;
-        float:left;
-    }
 }
 
 .pureclarity-info-box {
