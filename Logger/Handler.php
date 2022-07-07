@@ -59,7 +59,7 @@ class Handler extends BaseHandler
      *
      * @return void
      */
-    public function write(array $record)
+    public function write(array $record) : void
     {
         if ($record['level'] !== Logger::DEBUG || $this->coreConfig->isDebugLoggingEnabled()) {
             parent::write($record);
