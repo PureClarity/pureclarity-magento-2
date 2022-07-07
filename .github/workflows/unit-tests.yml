@@ -14,7 +14,7 @@ jobs:
       
     strategy:
       matrix:
-        magento: ['2.2.11', '2.3.7-p1', '2.4.3']
+        magento: ['2.2.11', '2.3.7-p1', '2.4.3', '2.4.4']
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -31,7 +31,12 @@ jobs:
         env:
           MAGENTO_VERSION: ${{ matrix.magento }}
       - name: Run PHP 7.4 Tests
-        if: contains(matrix.magento, '2.4')
+        if: contains(matrix.magento, '2.4.3')
         uses: docker://ghcr.io/pureclarity/github-actions-magento-unit-tests:7.4
+        env:
+          MAGENTO_VERSION: ${{ matrix.magento }}
+      - name: Run PHP 8.1 Tests
+        if: contains(matrix.magento, '2.4.4')
+        uses: docker://ghcr.io/pureclarity/github-actions-magento-unit-tests:8.1
         env:
           MAGENTO_VERSION: ${{ matrix.magento }}
