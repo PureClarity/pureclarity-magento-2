@@ -21,7 +21,6 @@ jobs:
         php_version:
           - 7.3
           - 7.4
-          - 8.1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
