@@ -37,6 +37,6 @@ jobs:
           MAGENTO_VERSION: ${{ matrix.magento }}
       - name: Run PHP 8.1 Tests
         if: contains(matrix.magento, '2.4.4')
-        uses: docker://ghcr.io/pureclarity/github-actions-magento-unit-tests:8.1
+        uses: docker://yireo/github-actions-magento-unit-tests:8.1
         env:
           MAGENTO_VERSION: ${{ matrix.magento }}
