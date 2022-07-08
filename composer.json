@@ -5,6 +5,7 @@
     "license": [
         "OSL-3.0"
     ],
+    "minimum-stability":"dev",
     "require": {
         "ext-curl": "*",
         "magento/framework": "100.1.*|101.0.*|102.0.*|103.0.*",
@@ -34,7 +35,7 @@
     "repositories": {
         "0": {
             "type": "composer",
-            "url": "https://repo.magento.com/",
+            "url": "https://repo.packagist.org/",
             "canonical": false
         }
     },
