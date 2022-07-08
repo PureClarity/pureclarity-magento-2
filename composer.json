@@ -32,12 +32,6 @@
         "magento/module-wishlist": "101.0.*|101.1.*|101.2.*",
         "pureclarity/php-sdk": "dev-support-php8"
     },
-    "repositories": {
-        "0": {
-            "type": "composer",
-            "url": "https://repo.magento.com/"
-        }
-    },
     "autoload": {
         "files": [
             "registration.php"
@@ -45,14 +39,5 @@
         "psr-4": {
             "Pureclarity\\Core\\": ""
         }
-    },
-    "config": {
-        "allow-plugins": {
-            "magento/*": true,
-            "laminas/laminas-dependency-plugin": true
-        }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.5"
     }
 }
