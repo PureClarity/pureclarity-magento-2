@@ -30,7 +30,7 @@
         "magento/module-url-rewrite": "101.0.*|101.1.*|102.0.*",
         "magento/module-widget": "101.0.*|101.1.*|101.2.*",
         "magento/module-wishlist": "101.0.*|101.1.*|101.2.*",
-        "pureclarity/php-sdk": "dev-support-php8"
+        "pureclarity/php-sdk": "3.*"
     },
     "repositories": {
         "0": {
