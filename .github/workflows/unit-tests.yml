@@ -11,7 +11,7 @@ jobs:
       MODULE_NAME: Pureclarity_Core
       COMPOSER_NAME: pureclarity/pureclarity-magento-2
       INPUT_MAGENTO_PRE_INSTALL_SCRIPT: .github/workflows/scripts/require.sh
-      INPUT_PHPUNIT_FILE: ./phpunit.xml
+      INPUT_PHPUNIT_FILE: app/code/Pureclarity/Core/phpunit.xml
     strategy:
       matrix:
         magento: ['2.2.11', '2.3.7-p1', '2.4.3', '2.4.4']
