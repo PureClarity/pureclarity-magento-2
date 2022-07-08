@@ -32,6 +32,13 @@
         "magento/module-wishlist": "101.0.*|101.1.*|101.2.*",
         "pureclarity/php-sdk": "dev-support-php8"
     },
+    "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/",
+            "canonical": false
+        }
+    },
     "autoload": {
         "files": [
             "registration.php"
