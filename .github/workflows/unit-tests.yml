@@ -1,5 +1,5 @@
 name: Unit Tests
-on: [pull_request]
+on: [pull_request,workflow_dispatch]
 jobs:
   unit-tests:
     name: Magento 2 Unit Tests
