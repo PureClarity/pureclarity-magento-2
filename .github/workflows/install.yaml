@@ -20,6 +20,7 @@ jobs:
     outputs:
       matrix: ${{ steps.supported-version.outputs.matrix }}
     steps:
+      - run: echo "Using pureclarity/github-actions-magento2/supported-version@main" 
       - uses: actions/checkout@v2
       - uses: pureclarity/github-actions-magento2/supported-version@main
         id: supported-version
