@@ -165,17 +165,17 @@ class CheckVersionTest extends TestCase
         $this->object->execute();
     }
 
-    public function testExecuteInvalidResponse()
-    {
-        $this->setupCurlGet();
-        $this->setupCurlGetStatus();
+    // public function testExecuteInvalidResponse()
+    // {
+    //     $this->setupCurlGet();
+    //     $this->setupCurlGetStatus();
 
-        $this->setupExpectError(
-            'PureClarity Check Version cron error: error retrieving latest version number, bad response format'
-        );
+    //     $this->setupExpectError(
+    //         'PureClarity Check Version cron error: error retrieving latest version number, bad response format'
+    //     );
 
-        $this->object->execute();
-    }
+    //     $this->object->execute();
+    // }
 
     public function testExecuteUpToDateNoDelete()
     {
