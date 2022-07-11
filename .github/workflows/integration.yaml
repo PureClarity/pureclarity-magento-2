@@ -30,6 +30,6 @@ jobs:
     with:
       package_name: pureclarity/pureclarity-magento-2
       matrix: ${{ needs.compute_matrix.outputs.matrix }}
-      test_command: ../../../vendor/bin/phpunit ../../../vendor/pureclarity/pureclarity-magento-2/Test/Integration
+      test_command: ../../../vendor/bin/phpunit ../../../vendor/pureclarity/pureclarity-magento-2/Test/Unit
     secrets:
       composer_auth: ${{ secrets.COMPOSER_AUTH }}
