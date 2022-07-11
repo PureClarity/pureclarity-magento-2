@@ -48,10 +48,7 @@
         }
     },
     "config": {
-        "allow-plugins": {
-            "magento/*": true,
-            "laminas/laminas-dependency-plugin": true
-        }
+        "allow-plugins": true
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
