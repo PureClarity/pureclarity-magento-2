@@ -21,12 +21,12 @@ jobs:
         matrix: ${{ steps.supported-version.outputs.matrix }}
       steps:
         - uses: actions/checkout@v2
-        - uses: graycoreio/github-actions-magento2/supported-version@main
+        - uses: pureclarity/github-actions-magento2/supported-version@main
           id: supported-version
         - run: echo ${{ steps.supported-version.outputs.matrix }}
   integration-workflow:
     needs: compute_matrix
-    uses: graycoreio/github-actions-magento2/.github/workflows/integration.yaml@main
+    uses: pureclarity/github-actions-magento2/.github/workflows/integration.yaml@main
     with:
       package_name: pureclarity/pureclarity-magento-2
       matrix: ${{ needs.compute_matrix.outputs.matrix }}
