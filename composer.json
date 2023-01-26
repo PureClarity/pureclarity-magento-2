@@ -2,7 +2,9 @@
     "name": "pureclarity/pureclarity-magento-2",
     "description": "PureClarity Intelligent Personalization",
     "type": "magento2-module",
-    "license": ["OSL-3.0"],
+    "license": [
+        "OSL-3.0"
+    ],
     "version": "7.0.0",
     "require": {
         "ext-curl": "*",
@@ -30,8 +32,15 @@
         "magento/module-wishlist": "101.0.*|101.1.*|101.2.*",
         "pureclarity/php-sdk": "3.*"
     },
+    "require-dev": {
+        "magento/magento-coding-standard": "^30.0"
+    },
     "autoload": {
-        "files": [ "registration.php" ],
-        "psr-4": { "Pureclarity\\Core\\": "" }
-    } 
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Pureclarity\\Core\\": ""
+        }
+    }
 }
