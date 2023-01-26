@@ -1,59 +1,44 @@
 <?php
-/**
- * Copyright © PureClarity. All rights reserved.
- * See LICENSE.txt for license details.
- */
+namespace PureClarity\DataPatch\Setup\Patch\Data;
 
-namespace Pureclarity\Core\Setup;
- 
+use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
-use Magento\Catalog\Model\Product\Attribute\Frontend\Image as FrontendImage;
-use Magento\Eav\Setup\EavSetupFactory;
-use Magento\Framework\Setup\ModuleContextInterface;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Framework\Setup\InstallDataInterface;
-use Pureclarity\Core\Model\Attribute\Backend\Image;
 
-/**
- * Class InstallData
- *
- * Installs attributes required for PureClarity.
- */
-class InstallData implements InstallDataInterface
+class InstallData implements DataPatchInterface
 {
-    /** @var EavSetupFactory $eavSetupFactory */
+    /** @var ModuleDataSetupInterface */
+    private $moduleDataSetup;
+
+    /** @var EavSetupFactory */
     private $eavSetupFactory;
- 
+
     /**
+     * @param ModuleDataSetupInterface $moduleDataSetup
      * @param EavSetupFactory $eavSetupFactory
      */
-    public function __construct(EavSetupFactory $eavSetupFactory)
+    public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup,
+        EavSetupFactory $eavSetupFactory
+    )
     {
+        $this->moduleDataSetup = $moduleDataSetup;
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
     /**
-     * Installs attributes required for PureClarity.
-     *
-     * @param ModuleDataSetupInterface $setup Module data setup interface
-     * @param ModuleContextInterface $context Module context interface
-     *
-     * @return void
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Zend_Validate_Exception
+     * {@inheritdoc}
      */
-    public function install(
-        ModuleDataSetupInterface $setup,
-        ModuleContextInterface $context
-    ) {
-        $setup->startSetup();
-
+    public function apply()
+    {
+     
         $eavSetup = $this->eavSetupFactory->create(
             [
-                'setup' => $setup
+                'setup' => $this->moduleDataSetup
             ]
         );
 
@@ -215,5 +200,29 @@ class InstallData implements InstallDataInterface
         );
  
         $setup->endSetup();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getVersion()
+    {
+        return '7.0.0';
     }
 }
