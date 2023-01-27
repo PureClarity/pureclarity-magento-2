@@ -7,11 +7,9 @@
 namespace Pureclarity\Core\Test\Unit\Setup;
 
 use Magento\Framework\Phrase;
-use Magento\Store\Model\StoreManagerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Pureclarity\Core\Api\StateRepositoryInterface;
-use Pureclarity\Core\Model\CoreConfig;
 use Pureclarity\Core\Model\State;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -30,18 +28,11 @@ class CleanSlateTest extends TestCase
     /** @var CleanSlate $object */
     private $object;
 
-
     /** @var MockObject|ModuleDataSetupInterface $moduleDataSetupInterface */
     private $moduleDataSetupInterface;
 
-    /** @var MockObject|CoreConfig */
-    private $coreConfig;
-
     /** @var MockObject|StateRepositoryInterface $stateRepository */
     private $stateRepository;
-
-    /** @var MockObject|StoreManagerInterface $storeManager */
-    private $storeManager;
 
     /** @var MockObject|LoggerInterface $logger */
     private $logger;
@@ -49,17 +40,12 @@ class CleanSlateTest extends TestCase
     protected function setUp(): void
     {
         $this->moduleDataSetupInterface = $this->createMock(ModuleDataSetupInterface::class);
-
-        $this->coreConfig = $this->createMock(CoreConfig::class);
         $this->stateRepository = $this->createMock(StateRepositoryInterface::class);
-        $this->storeManager = $this->createMock(StoreManagerInterface::class);
         $this->logger = $this->createMock(LoggerInterface::class);
 
         $this->object = new CleanSlate(
                 $this->moduleDataSetupInterface,
-                $this->coreConfig,
                 $this->stateRepository,
-                $this->storeManager,
                 $this->logger
         );
     }
