@@ -48,7 +48,7 @@ class CheckForPreviousInstallTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->moduleDataSetupInterface = $this->createMock(CoreConfig::class);
+        $this->moduleDataSetupInterface = $this->createMock(ModuleDataSetupInterface::class);
 
         $this->coreConfig = $this->createMock(CoreConfig::class);
         $this->stateRepository = $this->createMock(StateRepositoryInterface::class);
@@ -138,8 +138,8 @@ class CheckForPreviousInstallTest extends TestCase
         $this->setupGetStores();
 
         $this->moduleDataSetup->expects($this->any())
-            ->method('getConnection')
-            ->willReturn($this->createMock(State::class));
+            ->method('startSetup')
+            ->willReturn(null);
 
         $this->coreConfig->expects($this->any())
             ->method('getAccessKey')
@@ -160,8 +160,8 @@ class CheckForPreviousInstallTest extends TestCase
         $this->setupGetStores();
 
         $this->moduleDataSetup->expects($this->any())
-            ->method('getConnection')
-            ->willReturn($this->createMock(State::class));
+            ->method('startSetup')
+            ->willReturn(null);
 
         $this->coreConfig->expects($this->at(0))
             ->method('getAccessKey')
@@ -220,9 +220,9 @@ class CheckForPreviousInstallTest extends TestCase
     {
         $this->setupGetStores();
 
-        $this->moduleDataSetup->expects($this->any())
-            ->method('getConnection')
-            ->willReturn($this->createMock(State::class));
+       $this->moduleDataSetup->expects($this->any())
+            ->method('startSetup')
+            ->willReturn(null);
 
         $this->coreConfig->expects($this->at(0))
             ->method('getAccessKey')
@@ -286,8 +286,8 @@ class CheckForPreviousInstallTest extends TestCase
         $this->setupGetStores();
 
         $this->moduleDataSetup->expects($this->any())
-            ->method('getConnection')
-            ->willReturn($this->createMock(State::class));
+            ->method('startSetup')
+            ->willReturn(null);
 
         $this->coreConfig->expects($this->at(0))
             ->method('getAccessKey')

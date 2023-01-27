@@ -54,9 +54,9 @@ class CheckForPreviousInstall implements DataPatchInterface
     public function apply()
     {
 
-        $this->moduleDataSetup->getConnection()->startSetup();
+        $this->moduleDataSetup->startSetup();
         $this->checkForPreviousInstall();
-        $this->moduleDataSetup->getConnection()->endSetup();
+        $this->moduleDataSetup->endSetup();
     }
 
     /**
