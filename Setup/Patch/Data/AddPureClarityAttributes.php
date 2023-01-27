@@ -1,5 +1,5 @@
 <?php
-namespace PureClarity\DataPatch\Setup\Patch\Data;
+namespace Pureclarity\Core\Setup\Patch\Data;
 
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;

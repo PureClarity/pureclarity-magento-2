@@ -17,15 +17,15 @@ use Pureclarity\Core\Model\State;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Psr\Log\LoggerInterface;
-use PureClarity\DataPatch\Setup\Patch\Data\CheckForPreviousInstall;
+use Pureclarity\Core\Setup\Patch\Data\CheckForPreviousInstall;
 
 /**
- * Class UpgradeDataTest
+ * Class CheckForPreviousInstallTest
  *
  * Tests the methods in \Pureclarity\Core\Setup\Patch\Data\CheckForPreviousInstall
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class UpgradeDataTest extends TestCase
+class CheckForPreviousInstallTest extends TestCase
 {
     /** @var CheckForPreviousInstall $object */
     private $object;

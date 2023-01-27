@@ -1,5 +1,5 @@
 <?php
-namespace PureClarity\DataPatch\Setup\Patch\Data;
+namespace Pureclarity\Core\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -92,7 +92,7 @@ class CleanSlate implements DataPatchInterface
     public static function getDependencies()
     {
         return [
-            PureClarity\DataPatch\Setup\Patch\Data\CheckForPreviousInstall::class
+            Pureclarity\Core\Setup\Patch\Data\CheckForPreviousInstall::class
         ];
     }
 
