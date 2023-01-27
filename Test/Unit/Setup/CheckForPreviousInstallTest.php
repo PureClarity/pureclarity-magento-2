@@ -49,6 +49,7 @@ class UpgradeDataTest extends TestCase
     protected function setUp(): void
     {
         $this->moduleDataSetupInterface = $this->createMock(CoreConfig::class);
+
         $this->coreConfig = $this->createMock(CoreConfig::class);
         $this->stateRepository = $this->createMock(StateRepositoryInterface::class);
         $this->storeManager = $this->createMock(StoreManagerInterface::class);
@@ -179,7 +180,7 @@ class UpgradeDataTest extends TestCase
 
         $stateMock->expects($this->once())
             ->method('setStoreId')
-            ->with(1);
+            ->with(0);
 
         $this->stateRepository->expects($this->at(0))
             ->method('getByNameAndStore')
