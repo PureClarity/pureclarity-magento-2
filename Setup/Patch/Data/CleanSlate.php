@@ -3,8 +3,6 @@ namespace Pureclarity\Core\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Model\StoreManagerInterface;
-use Pureclarity\Core\Model\CoreConfig;
 use Pureclarity\Core\Api\StateRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
@@ -14,37 +12,26 @@ class CleanSlate implements DataPatchInterface
     /** @var ModuleDataSetupInterface */
     private $moduleDataSetup;
 
-    /** @var CoreConfig */
-    private $coreConfig;
-
     /** @var StateRepositoryInterface $stateRepository */
     private $stateRepository;
 
-    /** @var StoreManagerInterface $storeManager */
-    private $storeManager;
 
     /** @var LoggerInterface $logger */
     private $logger;
 
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
-     * @param CoreConfig $coreConfig
      * @param StateRepositoryInterface $stateRepository
-     * @param StoreManagerInterface $storeManager
      * @param LoggerInterface $logger
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        CoreConfig $coreConfig,
         StateRepositoryInterface $stateRepository,
-        StoreManagerInterface $storeManager,
         LoggerInterface $logger
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
-        $this->coreConfig = $coreConfig;
         $this->stateRepository = $stateRepository;
-        $this->storeManager = $storeManager;
         $this->logger = $logger;
     }
 
