@@ -179,7 +179,7 @@ class UpgradeDataTest extends TestCase
 
         $stateMock->expects($this->once())
             ->method('setStoreId')
-            ->with(0);
+            ->with(1);
 
         $this->stateRepository->expects($this->at(0))
             ->method('getByNameAndStore')
