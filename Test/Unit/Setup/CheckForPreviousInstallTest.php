@@ -49,8 +49,6 @@ class UpgradeDataTest extends TestCase
     protected function setUp(): void
     {
         $this->moduleDataSetupInterface = $this->createMock(CoreConfig::class);
-        $this->moduleDataSetupInterface->getConnection() = $this->createMock(CoreConfig::class);
-
         $this->coreConfig = $this->createMock(CoreConfig::class);
         $this->stateRepository = $this->createMock(StateRepositoryInterface::class);
         $this->storeManager = $this->createMock(StoreManagerInterface::class);
@@ -138,6 +136,10 @@ class UpgradeDataTest extends TestCase
     {
         $this->setupGetStores();
 
+        $this->moduleDataSetup->expects($this->any())
+            ->method('getConnection')
+            ->willReturn($this->createMock(State::class));
+
         $this->coreConfig->expects($this->any())
             ->method('getAccessKey')
             ->willReturn(null);
@@ -154,8 +156,11 @@ class UpgradeDataTest extends TestCase
      */
     public function testUpgradeConfiguredStore1()
     {
-
         $this->setupGetStores();
+
+        $this->moduleDataSetup->expects($this->any())
+            ->method('getConnection')
+            ->willReturn($this->createMock(State::class));
 
         $this->coreConfig->expects($this->at(0))
             ->method('getAccessKey')
@@ -213,6 +218,10 @@ class UpgradeDataTest extends TestCase
     public function testUpgradeConfiguredStore2()
     {
         $this->setupGetStores();
+
+        $this->moduleDataSetup->expects($this->any())
+            ->method('getConnection')
+            ->willReturn($this->createMock(State::class));
 
         $this->coreConfig->expects($this->at(0))
             ->method('getAccessKey')
@@ -274,6 +283,10 @@ class UpgradeDataTest extends TestCase
     public function testUpgradeException()
     {
         $this->setupGetStores();
+
+        $this->moduleDataSetup->expects($this->any())
+            ->method('getConnection')
+            ->willReturn($this->createMock(State::class));
 
         $this->coreConfig->expects($this->at(0))
             ->method('getAccessKey')
