@@ -1,28 +1,19 @@
 <?php
-/**
- * Copyright © PureClarity. All rights reserved.
- * See LICENSE.txt for license details.
- */
+namespace PureClarity\DataPatch\Setup\Patch\Data;
 
-namespace Pureclarity\Core\Setup;
-
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Framework\Setup\UpgradeDataInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Psr\Log\LoggerInterface;
-use Pureclarity\Core\Api\StateRepositoryInterface;
 use Pureclarity\Core\Model\CoreConfig;
+use Pureclarity\Core\Api\StateRepositoryInterface;
+use Psr\Log\LoggerInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
 
-/**
- * Class UpgradeData
- *
- * Runs upgrades to Schema based on PureClarity module version
- */
-class UpgradeData implements UpgradeDataInterface
+class CheckForPreviousInstall implements DataPatchInterface
 {
+    /** @var ModuleDataSetupInterface */
+    private $moduleDataSetup;
+
     /** @var CoreConfig */
     private $coreConfig;
 
@@ -36,43 +27,36 @@ class UpgradeData implements UpgradeDataInterface
     private $logger;
 
     /**
+     * @param ModuleDataSetupInterface $moduleDataSetup
      * @param CoreConfig $coreConfig
      * @param StateRepositoryInterface $stateRepository
      * @param StoreManagerInterface $storeManager
      * @param LoggerInterface $logger
      */
     public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup,
         CoreConfig $coreConfig,
         StateRepositoryInterface $stateRepository,
         StoreManagerInterface $storeManager,
         LoggerInterface $logger
-    ) {
-        $this->coreConfig      = $coreConfig;
+    )
+    {
+        $this->moduleDataSetup = $moduleDataSetup;
+        $this->coreConfig = $coreConfig;
         $this->stateRepository = $stateRepository;
-        $this->storeManager    = $storeManager;
-        $this->logger          = $logger;
+        $this->storeManager = $storeManager;
+        $this->logger = $logger;
     }
 
     /**
-     * Checks to see if a version change needs to trigger an upgrade
-     *
-     * @param ModuleDataSetupInterface $setup
-     * @param ModuleContextInterface $context
-     * @return void
+     * {@inheritdoc}
      */
-    public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+    public function apply()
     {
-        if (version_compare($context->getVersion(), '2.0.0', '<')) {
-            $setup->startSetup();
-            $this->checkForPreviousInstall();
-            $setup->endSetup();
-        }
 
-        if (version_compare($context->getVersion(), '3.0.0', '<')) {
-            $setup->startSetup();
-            $this->cleanState();
-            $setup->endSetup();
-        }
+        $this->moduleDataSetup->getConnection()->startSetup();
+        $this->checkForPreviousInstall();
+        $this->moduleDataSetup->getConnection()->endSetup();
     }
 
     /**
@@ -115,29 +99,26 @@ class UpgradeData implements UpgradeDataInterface
     }
 
     /**
-     * Cleans out old state values that are not used any more
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    private function cleanState()
+    public static function getDependencies()
     {
-        try {
-            $configuredState = $this->stateRepository->getByNameAndStore('is_configured', 0);
-            if ($configuredState->getId()) {
-                $this->stateRepository->delete($configuredState);
-            }
+        return [];
+    }
 
-            $defaultStoreState = $this->stateRepository->getByNameAndStore('default_store', 0);
-            if ($defaultStoreState->getId()) {
-                $this->stateRepository->delete($defaultStoreState);
-            }
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases()
+    {
+        return [];
+    }
 
-            $signupState = $this->stateRepository->getByNameAndStore('signup_request', 0);
-            if ($signupState->getId() && $signupState->getValue() === 'complete') {
-                $this->stateRepository->delete($signupState);
-            }
-        } catch (CouldNotDeleteException $e) {
-            $this->logger->error('PureClarity: could not delete old state on upgrade: ' . $e->getMessage());
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function getVersion()
+    {
+        return '3.0.0';
     }
 }
