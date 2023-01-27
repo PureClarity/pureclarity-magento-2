@@ -18,6 +18,7 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Psr\Log\LoggerInterface;
 use Pureclarity\Core\Setup\Patch\Data\CheckForPreviousInstall;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 /**
  * Class CheckForPreviousInstallTest
@@ -137,7 +138,7 @@ class CheckForPreviousInstallTest extends TestCase
     {
         $this->setupGetStores();
 
-        $this->moduleDataSetup->expects($this->any())
+        $this->moduleDataSetupInterface->expects($this->any())
             ->method('startSetup')
             ->willReturn(null);
 
@@ -159,7 +160,7 @@ class CheckForPreviousInstallTest extends TestCase
     {
         $this->setupGetStores();
 
-        $this->moduleDataSetup->expects($this->any())
+        $this->moduleDataSetupInterface->expects($this->any())
             ->method('startSetup')
             ->willReturn(null);
 
@@ -220,7 +221,7 @@ class CheckForPreviousInstallTest extends TestCase
     {
         $this->setupGetStores();
 
-       $this->moduleDataSetup->expects($this->any())
+       $this->moduleDataSetupInterface->expects($this->any())
             ->method('startSetup')
             ->willReturn(null);
 
@@ -285,7 +286,7 @@ class CheckForPreviousInstallTest extends TestCase
     {
         $this->setupGetStores();
 
-        $this->moduleDataSetup->expects($this->any())
+        $this->moduleDataSetupInterface->expects($this->any())
             ->method('startSetup')
             ->willReturn(null);
 
