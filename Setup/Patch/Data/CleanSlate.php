@@ -53,10 +53,9 @@ class CleanSlate implements DataPatchInterface
      */
     public function apply()
     {
-
-        $this->moduleDataSetup->getConnection()->startSetup();
-        $this->checkForPreviousInstall();
-        $this->moduleDataSetup->getConnection()->endSetup();
+        $this->moduleDataSetup->startSetup();
+        $this->cleanState();
+        $this->moduleDataSetup->endSetup();
     }
 
     /**
