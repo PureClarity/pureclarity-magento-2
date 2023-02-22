@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © PureClarity. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="pureclarity_productfeed" resource="default" engine="innodb" comment="PureClarity Delta Table">
+    <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Auto Increment ID"/>
+    <column xsi:type="varchar" name="product_id" nullable="false" length="255" comment="Changed Product"/>
+    <column xsi:type="varchar" name="token" nullable="true" length="255" comment="Token"/>
+    <column xsi:type="smallint" name="status_id" padding="6" unsigned="false" nullable="true" identity="false" comment="Status"/>
+    <column xsi:type="varchar" name="message" nullable="true" length="255" comment="Message"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+    <index referenceId="PURECLARITY_PRODUCTFEED_TOKEN" indexType="btree">
+      <column name="token"/>
+    </index>
+    <index referenceId="PURECLARITY_PRODUCTFEED_STATUS_ID" indexType="btree">
+      <column name="status_id"/>
+    </index>
+  </table>
+  <table name="pureclarity_state" resource="default" engine="innodb" comment="PureClarity State Table">
+    <column xsi:type="int" name="state_id" padding="10" unsigned="true" nullable="false" identity="true" comment="PureClarity State ID"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="35" default="" comment="State Name"/>
+    <column xsi:type="varchar" name="value" nullable="false" length="255" default="" comment="State Value"/>
+    <column xsi:type="int" name="store_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="State Store ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="state_id"/>
+    </constraint>
+    <index referenceId="PURECLARITY_STATE_NAME_STORE_ID" indexType="btree">
+      <column name="name"/>
+      <column name="store_id"/>
+    </index>
+  </table>
+</schema>
