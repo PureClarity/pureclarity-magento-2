@@ -45,6 +45,7 @@ class Uninstall implements UninstallInterface
         
         $connection = $setup->getConnection();
         $connection->dropTable($setup->getTable('pureclarity_productfeed'));
+        $connection->dropTable($setup->getTable('pureclarity_state'));
 
         $this->uninstaller->uninstall();
 
