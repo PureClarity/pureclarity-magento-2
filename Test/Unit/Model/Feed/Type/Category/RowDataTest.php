@@ -331,7 +331,7 @@ class RowDataTest extends TestCase
         $category = $this->setupBaseCategory($categoryId, null, 1);
 
         $category->method('getImageUrl')
-        ->willReturn(null);
+            ->willReturn(null);
 
         $category->method('getData')
             ->with('description')
@@ -347,6 +347,8 @@ class RowDataTest extends TestCase
 
         $category->method('getIsActive')
             ->willReturn('1');
+
+        return $category;
     }
 
     /**
