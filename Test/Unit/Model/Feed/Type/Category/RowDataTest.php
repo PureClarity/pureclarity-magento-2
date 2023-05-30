@@ -201,26 +201,23 @@ class RowDataTest extends TestCase
         $categoryId = 1;
         $category = $this->setupBaseCategory($categoryId, 'Category ' . $categoryId, $categoryId);
 
-        $category->expects(self::at(5))
-            ->method('getData')
-            ->with('description')
-            ->willReturn('');
-
         $category->method('getImageUrl')
             ->willReturn(null);
 
-        $category->expects(self::at(7))
-            ->method('getData')
+        $category->method('getData')
+            ->with('description')
+            ->willReturn('');
+
+        $category->method('getData')
             ->with('pureclarity_hide_from_feed')
             ->willReturn('0');
 
-        $category->method('getIsActive')
-            ->willReturn('1');
-
-        $category->expects(self::at(9))
-            ->method('getData')
+        $category->method('getData')
             ->with('pureclarity_category_image')
             ->willReturn(null);
+
+        $category->method('getIsActive')
+            ->willReturn('1');
 
         return $category;
     }
