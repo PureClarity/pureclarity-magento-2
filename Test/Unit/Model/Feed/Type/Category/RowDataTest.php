@@ -322,7 +322,7 @@ class RowDataTest extends TestCase
      */
     public function setupCategory4()
     {
-        $categoryId = 1;
+        $categoryId = 4;
         $category = $this->setupBaseCategory($categoryId, null, $categoryId);
 
         $category->expects(self::at(5))
