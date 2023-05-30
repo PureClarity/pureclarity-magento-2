@@ -157,7 +157,7 @@ class RowDataTest extends TestCase
      * @param int $categoryId
      * @return MockObject|Category
      */
-    public function setupBaseCategory(int $id, string $name, int $level)
+    public function setupBaseCategory(int $id, ?string $name, int $level)
     {
         $category = $this->createPartialMock(
             Category::class,
