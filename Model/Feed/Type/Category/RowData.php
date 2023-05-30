@@ -86,7 +86,7 @@ class RowData implements CategoryFeedRowDataManagementInterface
         if ($excludeFromRecommenders) {
             $categoryData['ExcludeFromRecommenders'] = true;
             $this->logger->debug('Category Feed: Category excluded from recommenders as has no name');
-        } else if ($row->getData('pureclarity_hide_from_feed') === '1') {
+        } elseif ($row->getData('pureclarity_hide_from_feed') === '1') {
             $categoryData['ExcludeFromRecommenders'] = true;
             $this->logger->debug('Category Feed: Category excluded from recommenders by attribute');
         }
