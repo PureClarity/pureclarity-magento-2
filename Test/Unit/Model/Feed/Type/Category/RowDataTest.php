@@ -338,15 +338,10 @@ class RowDataTest extends TestCase
         $category->method('getImageUrl')
             ->willReturn(null);
 
-        $category->expects(self::at(8))
-            ->method('getData')
-            ->with('pureclarity_hide_from_feed')
-            ->willReturn('0');
-
         $category->method('getIsActive')
             ->willReturn('1');
 
-        $category->expects(self::at(10))
+        $category->expects(self::at(8))
             ->method('getData')
             ->with('pureclarity_category_image')
             ->willReturn(null);
