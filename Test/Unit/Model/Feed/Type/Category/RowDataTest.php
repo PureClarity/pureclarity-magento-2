@@ -325,21 +325,15 @@ class RowDataTest extends TestCase
         $categoryId = 1;
         $category = $this->setupBaseCategory($categoryId, null, $categoryId);
 
-        $category->method('getImageUrl')
-            ->willReturn(null);
-
         $category->expects(self::at(5))
             ->method('getData')
             ->with('description')
             ->willReturn('');
 
-        $category->method('getParentCategory')
-            ->willReturn($this->setupParentCategory());
+        $category->method('getImageUrl')
+            ->willReturn(null);
 
-        $category->method('getUrl')
-            ->willReturn('//www.example.com/category-' . $categoryId);
-
-        $category->expects(self::at(9))
+        $category->expects(self::at(7))
             ->method('getData')
             ->with('pureclarity_hide_from_feed')
             ->willReturn('0');
@@ -347,10 +341,10 @@ class RowDataTest extends TestCase
         $category->method('getIsActive')
             ->willReturn('1');
 
-        $category->expects(self::at(11))
+        $category->expects(self::at(9))
             ->method('getData')
             ->with('pureclarity_category_image')
-            ->willReturn('');
+            ->willReturn(null);
 
         return $category;
     }
