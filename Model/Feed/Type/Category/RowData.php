@@ -44,7 +44,7 @@ class RowData implements CategoryFeedRowDataManagementInterface
         LoggerInterface $logger
     ) {
         $this->coreConfig = $coreConfig;
-        $this->logger     = $logger;
+        $this->logger = $logger;
     }
 
     /**
@@ -59,10 +59,17 @@ class RowData implements CategoryFeedRowDataManagementInterface
     {
         $this->logger->debug('Category Feed: Processing category ' . $row->getId() . ' (' . $row->getName() . ')');
 
+        $displayName = $row->getName();
+        $excludeFromRecommenders = false;
+        if (!$displayName) {
+            $displayName = $row->getId();
+            $excludeFromRecommenders = true;
+        }
+
         // Build data
         $categoryData = [
             'Id' => $row->getId(),
-            'DisplayName' => $row->getName(),
+            'DisplayName' => $displayName,
             'Image' => $this->getImageUrl($store, $row),
             'Description' => $row->getData('description') ?: '',
             'Link' => '/',
@@ -76,7 +83,10 @@ class RowData implements CategoryFeedRowDataManagementInterface
         }
 
         // Check whether to ignore this category in recommenders
-        if ($row->getData('pureclarity_hide_from_feed') === '1') {
+        if ($excludeFromRecommenders) {
+            $categoryData['ExcludeFromRecommenders'] = true;
+            $this->logger->debug('Category Feed: Category excluded from recommenders as has no name');
+        } else if ($row->getData('pureclarity_hide_from_feed') === '1') {
             $categoryData['ExcludeFromRecommenders'] = true;
             $this->logger->debug('Category Feed: Category excluded from recommenders by attribute');
         }
