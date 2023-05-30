@@ -128,6 +128,9 @@ class RowDataTest extends TestCase
             $categoryData['DisplayName'] = $categoryId;
             // no name, so set to be excluded from recommenders
             $categoryData['ExcludeFromRecommenders'] = true;
+            $categoryData['Link'] = '';
+            $categoryData['OverrideImage'] = null;
+
         }
 
         return $categoryData;
