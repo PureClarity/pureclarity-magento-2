@@ -128,8 +128,10 @@ class RowDataTest extends TestCase
             $categoryData['DisplayName'] = $categoryId;
             // no name, so set to be excluded from recommenders
             $categoryData['ExcludeFromRecommenders'] = true;
-            $categoryData['Link'] = '';
-            $categoryData['OverrideImage'] = null;
+             // no image, but placeholder configured
+             $categoryData['Image'] = '//www.example.com/placeholder-image-url.jpg';
+             // no override image, but placeholder configured
+             $categoryData['OverrideImage'] = '//www.example.com/secondary-placeholder-image-url.jpg';
 
         }
 
