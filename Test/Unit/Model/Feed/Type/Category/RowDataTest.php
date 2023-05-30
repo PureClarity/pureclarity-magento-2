@@ -341,7 +341,7 @@ class RowDataTest extends TestCase
         $category->method('getIsActive')
             ->willReturn('1');
 
-        $category->expects(self::at(8))
+        $category->expects(self::at(9))
             ->method('getData')
             ->with('pureclarity_category_image')
             ->willReturn(null);
