@@ -16,7 +16,7 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Pureclarity\Core\Model\Attribute\Backend\Image;
-use Zend_Validate_Exception;
+use Magento\Framework\Validator\ValidateException;
 
 /**
  * Installs attributes required for PureClarity.
@@ -44,7 +44,7 @@ class AddPureClarityAttributesService
      *
      * @return void
      * @throws LocalizedException
-     * @throws Zend_Validate_Exception
+     * @throws ValidateException
      */
     public function execute(ModuleDataSetupInterface $moduleDataSetup): void
     {
