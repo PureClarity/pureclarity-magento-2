@@ -1,0 +1,32 @@
+{
+    "pureclarity_productfeed": {
+        "column": {
+            "id": true,
+            "product_id": true,
+            "token": true,
+            "status_id": true,
+            "message": true
+        },
+        "index": {
+            "PURECLARITY_PRODUCTFEED_TOKEN": true,
+            "PURECLARITY_PRODUCTFEED_STATUS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "pureclarity_state": {
+        "column": {
+            "state_id": true,
+            "name": true,
+            "value": true,
+            "store_id": true
+        },
+        "index": {
+            "PURECLARITY_STATE_NAME_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

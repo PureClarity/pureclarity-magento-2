@@ -169,6 +169,9 @@ class CheckVersionTest extends TestCase
     {
         $this->setupCurlGet();
         $this->setupCurlGetStatus();
+        $this->curl->expects($this->any())
+        ->method('getBody')
+        ->willReturn('');
 
         $this->setupExpectError(
             'PureClarity Check Version cron error: error retrieving latest version number, bad response format'
