@@ -106,8 +106,8 @@ class RowDataTest extends TestCase
             $categoryData['IsActive'] = false;
             // has an override image set
             $categoryData['OverrideImage'] = '//www.example.com/'
-                                           . 'catalog/pureclarity_category_image/'
-                                           . 'override-image-url.jpg';
+                . 'catalog/pureclarity_category_image/'
+                . 'override-image-url.jpg';
         }
 
         // a lower-level category, with placeholder images being sent
@@ -120,6 +120,19 @@ class RowDataTest extends TestCase
             $categoryData['Image'] = '//www.example.com/placeholder-image-url.jpg';
             // no override image, but placeholder configured
             $categoryData['OverrideImage'] = '//www.example.com/secondary-placeholder-image-url.jpg';
+        }
+
+        // a category with no name
+        if ($categoryId === 4) {
+            //no name, so defaults to category id
+            $categoryData['DisplayName'] = $categoryId;
+            // no name, so set to be excluded from recommenders
+            $categoryData['ExcludeFromRecommenders'] = true;
+             // no image, but placeholder configured
+             $categoryData['Image'] = '//www.example.com/placeholder-image-url.jpg';
+             // no override image, but placeholder configured
+             $categoryData['OverrideImage'] = '//www.example.com/secondary-placeholder-image-url.jpg';
+
         }
 
         return $categoryData;
@@ -149,7 +162,7 @@ class RowDataTest extends TestCase
      * @param int $categoryId
      * @return MockObject|Category
      */
-    public function setupBaseCategory(int $categoryId)
+    public function setupBaseCategory(int $id, ?string $name, int $level)
     {
         $category = $this->createPartialMock(
             Category::class,
@@ -166,13 +179,13 @@ class RowDataTest extends TestCase
         );
 
         $category->method('getId')
-            ->willReturn($categoryId);
+            ->willReturn($id);
 
         $category->method('getName')
-            ->willReturn('Category ' . $categoryId);
+            ->willReturn($name);
 
         $category->method('getLevel')
-            ->willReturn($categoryId);
+            ->willReturn($level);
 
         return $category;
     }
@@ -186,7 +199,7 @@ class RowDataTest extends TestCase
     public function setupCategory1()
     {
         $categoryId = 1;
-        $category = $this->setupBaseCategory($categoryId);
+        $category = $this->setupBaseCategory($categoryId, 'Category ' . $categoryId, $categoryId);
 
         $category->expects(self::at(5))
             ->method('getData')
@@ -228,7 +241,7 @@ class RowDataTest extends TestCase
     public function setupCategory2()
     {
         $categoryId = 2;
-        $category = $this->setupBaseCategory($categoryId);
+        $category = $this->setupBaseCategory($categoryId, 'Category ' . $categoryId, $categoryId);
 
         $category->method('getImageUrl')
             ->willReturn('//www.example.com/category-' . $categoryId . 'image-url.jpg');
@@ -273,7 +286,7 @@ class RowDataTest extends TestCase
     public function setupCategory3()
     {
         $categoryId = 3;
-        $category = $this->setupBaseCategory($categoryId);
+        $category = $this->setupBaseCategory($categoryId, 'Category ' . $categoryId, $categoryId);
 
         $category->method('getImageUrl')
             ->willReturn(null);
@@ -301,6 +314,37 @@ class RowDataTest extends TestCase
             ->method('getData')
             ->with('pureclarity_category_image')
             ->willReturn('');
+
+        return $category;
+    }
+
+    /**
+     * Sets up a category MockObject with the following requirements:
+     *
+     * no name
+     *
+     * @return MockObject|Category
+     */
+    public function setupCategory4()
+    {
+        $categoryId = 4;
+        $category = $this->setupBaseCategory($categoryId, null, 1);
+
+        $category->expects(self::at(6))
+            ->method('getData')
+            ->with('description')
+            ->willReturn('');
+
+        $category->method('getImageUrl')
+            ->willReturn(null);
+
+        $category->method('getIsActive')
+            ->willReturn('1');
+
+        $category->expects(self::at(9))
+            ->method('getData')
+            ->with('pureclarity_category_image')
+            ->willReturn(null);
 
         return $category;
     }
@@ -373,6 +417,19 @@ class RowDataTest extends TestCase
         $this->setupConfig(true);
         $data = $this->mockCategoryData(3);
         $category = $this->setupCategory3();
+        $rowData = $this->object->getRowData($store, $category);
+        self::assertEquals($data, $rowData);
+    }
+
+    /**
+     * Tests that a row of data with all the optional fields present is sent correctly
+     */
+    public function testGetRowDataWithNoName(): void
+    {
+        $store = $this->setupStore();
+        $this->setupConfig(true);
+        $data = $this->mockCategoryData(4);
+        $category = $this->setupCategory4();
         $rowData = $this->object->getRowData($store, $category);
         self::assertEquals($data, $rowData);
     }
