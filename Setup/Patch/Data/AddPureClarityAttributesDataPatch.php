@@ -12,7 +12,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Pureclarity\Core\Setup\Service\AddPureClarityAttributesService;
-use Zend_Validate_Exception;
+use Magento\Framework\Validator\ValidateException;
 
 /**
 * Installs attributes required for PureClarity.
@@ -46,7 +46,7 @@ class AddPureClarityAttributesDataPatch implements DataPatchInterface, PatchVers
      *
      * @return $this
      * @throws LocalizedException
-     * @throws Zend_Validate_Exception
+     * @throws ValidateException
      */
     public function apply(): AddPureClarityAttributesDataPatch
     {
