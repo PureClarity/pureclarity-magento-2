@@ -6,7 +6,7 @@ Integrate your Magento 2 store with PureClarity for the ultimate Personalised Ec
 Compatibility
 -------------
 
-- Magento 2.2 and above
+- Magento 2.4 and above
 - Supports both Open Source and Commerce editions
 - PHP 7.1+
 
