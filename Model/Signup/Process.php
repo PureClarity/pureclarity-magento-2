@@ -136,10 +136,6 @@ class Process
             $errors[] = __('Missing Secret Key');
         }
 
-        if (!isset($requestData['region']) || empty($requestData['region'])) {
-            $errors[] = __('Missing Region');
-        }
-
         if (!isset($requestData['store_id'])) {
             $errors[] = __('Missing Store ID');
         }
@@ -157,7 +153,7 @@ class Process
         $storeId = (int)$requestData['store_id'];
         $this->coreConfig->setAccessKey($requestData['access_key'], $storeId);
         $this->coreConfig->setSecretKey($requestData['secret_key'], $storeId);
-        $this->coreConfig->setRegion($requestData['region'], $storeId);
+        $this->coreConfig->setRegion(1, $storeId);
         $this->coreConfig->setIsActive(1, $storeId);
         $this->coreConfig->setDeltasEnabled(1, $storeId);
         $this->coreConfig->setIsDailyFeedActive(1, $storeId);

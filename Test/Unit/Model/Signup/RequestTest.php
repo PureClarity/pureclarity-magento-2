@@ -205,7 +205,7 @@ class RequestTest extends TestCase
         $this->assertEquals('', $result['response']);
         $this->assertEquals(
             'Missing First name,Missing Last name,Missing Email Address,'
-            . 'Missing Company,Missing Password,Missing Store Name,Missing Region,Missing URL',
+            . 'Missing Company,Missing Password,Missing Store Name,Missing URL',
             $result['error']
         );
     }
@@ -244,24 +244,6 @@ class RequestTest extends TestCase
         $this->assertEquals('', $result['request_id']);
         $this->assertEquals('', $result['response']);
         $this->assertEquals('Invalid URL', $result['error']);
-    }
-
-    /**
-     * Tests sendRequest handles an invalid region
-     */
-    public function testInvalidRegion()
-    {
-        $this->urlValidator->method('isValid')->with('http://www.google.com/', ['http', 'https'])->willReturn(true);
-
-        $params = $this->getDefaultParams();
-        $params['region'] = 7;
-
-        $result = $this->object->sendRequest($params);
-
-        $this->assertEquals(false, $result['success']);
-        $this->assertEquals('', $result['request_id']);
-        $this->assertEquals('', $result['response']);
-        $this->assertEquals('Invalid Region selected', $result['error']);
     }
 
     /**

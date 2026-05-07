@@ -145,16 +145,7 @@ $state = $block->getPureclarityStateViewModel();
                             ) ?>
                         </span>
                         </p>
-                        <p class="pc-field">
-                            <label class="label" for="pc-sign-up-region"><?= $block->escapeHtml(__('Region')) ?></label>
-                            <select data-validate='{"required":true}' name="region" id="pc-sign-up-region">
-                                <?php foreach ($regions->getPureClarityRegions() as $region): ?>
-                                    <option value="<?= $block->escapeHtml($region['value']) ?>">
-                                        <?= $block->escapeHtml($region['label']) ?>
-                                    </option>
-                                <?php endforeach ?>
-                            </select>
-                        </p>
+                        <input type="hidden" name="region" value="1"/>
                     </div>
                 </form>
                 <div id="pc-sign-up-response-holder"></div>
@@ -357,16 +348,7 @@ $state = $block->getPureclarityStateViewModel();
                 </p>
                 <input type="hidden" name="store_id" id="pc-details-store-id"
                        value="<?= $block->escapeQuote($block->escapeHtml($stores->getStoreId())) ?>"/>
-                <p class="pc-field">
-                    <label for="pc-details-region"><?= $block->escapeHtml(__('Region')) ?></label>
-                    <select data-validate='{"required":true}' name="region" id="pc-details-region">
-                        <?php foreach ($regions->getPureClarityRegions() as $region): ?>
-                            <option value="<?= $block->escapeHtml($region['value']) ?>">
-                                <?= $block->escapeHtml($region['label']) ?>
-                            </option>
-                        <?php endforeach ?>
-                    </select>
-                </p>
+                <input type="hidden" name="region" value="1"/>
                 <div id="pc-details-store-fields" style="display:none;">
                     <p class="pc-field">
                         <label class="label" for="pc-details-store-name">

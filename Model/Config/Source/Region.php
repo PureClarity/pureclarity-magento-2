@@ -21,8 +21,7 @@ class Region implements OptionSourceInterface
      * @var string[]
      */
     private $validRegions = [
-        1 => 'Europe',
-        4 => 'USA'
+        1 => 'Europe'
     ];
 
     /**
@@ -31,8 +30,7 @@ class Region implements OptionSourceInterface
      * @var string[]
      */
     private $regionName = [
-        1 => "eu-west-1",
-        4 => "us-east-1"
+        1 => "eu-west-1"
     ];
 
     /**

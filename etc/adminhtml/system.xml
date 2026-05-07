@@ -35,10 +35,6 @@
                 <field id="secret_key" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Secret Key</label>
                 </field>
-                <field id="region" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Region</label>
-                    <source_model>Pureclarity\Core\Model\Config\Source\Region</source_model>
-                </field>
             </group>
             <group id="mode" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Mode</label>
