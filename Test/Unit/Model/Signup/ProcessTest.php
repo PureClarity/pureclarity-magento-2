@@ -294,7 +294,6 @@ class ProcessTest extends TestCase
         $expectedErrors = [
             'Missing Access Key',
             'Missing Secret Key',
-            'Missing Region',
             'Missing Store ID'
         ];
 
@@ -316,12 +315,6 @@ class ProcessTest extends TestCase
         $params['secret_key'] = '';
         $result = $this->object->processManualConfigure($params);
         $expectedErrors = ['Missing Secret Key'];
-        $this->assertEquals($expectedErrors, $result['errors']);
-
-        $params = $this->getDefaultParams();
-        $params['region'] = '';
-        $result = $this->object->processManualConfigure($params);
-        $expectedErrors = ['Missing Region'];
         $this->assertEquals($expectedErrors, $result['errors']);
     }
 

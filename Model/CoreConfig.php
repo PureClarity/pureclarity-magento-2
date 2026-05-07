@@ -103,20 +103,14 @@ class CoreConfig
     /**
      * Returns configured Region for the given store
      *
+     * All infrastructure is consolidated to eu-west-1 (region 1).
+     *
      * @param integer $storeId
-     * @return mixed (integer/string)
+     * @return integer
      */
     public function getRegion($storeId)
     {
-        $region = $this->getConfigValue(
-            self::CONFIG_PATH_REGION,
-            ScopeInterface::SCOPE_STORE,
-            $storeId
-        );
-        if ($region == null) {
-            $region = 1;
-        }
-        return $region;
+        return 1;
     }
 
     /**

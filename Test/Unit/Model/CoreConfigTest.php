@@ -134,25 +134,10 @@ class CoreConfigTest extends TestCase
     }
 
     /**
-     * Test that getAccessKey returns configured/default value
+     * Test that getRegion always returns 1 (eu-west-1)
      */
     public function testGetRegion(): void
     {
-        // Test with value
-        $this->scopeConfig->expects($this->at(0))
-            ->method('getValue')
-            ->with(CoreConfig::CONFIG_PATH_REGION, ScopeInterface::SCOPE_STORE, 1)
-            ->willReturn(4);
-
-        $result = $this->object->getRegion(1);
-        $this->assertEquals(4, $result);
-
-        // Test without value, should return 1
-        $this->scopeConfig->expects($this->at(0))
-            ->method('getValue')
-            ->with(CoreConfig::CONFIG_PATH_REGION, ScopeInterface::SCOPE_STORE, 1)
-            ->willReturn(null);
-
         $result = $this->object->getRegion(1);
         $this->assertEquals(1, $result);
     }

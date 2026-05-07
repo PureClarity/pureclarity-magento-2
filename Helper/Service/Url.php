@@ -21,48 +21,18 @@ class Url
     private $scriptUrl = '//pcs.pureclarity.net';
 
     /**
-     * Default PureClarity ClientScript Region URLS
+     * Default PureClarity API URL (eu-west-1)
      *
-     * @var string[]
+     * @var string
      */
-    private $regions = [
-        1 => "https://api-eu-w-1.pureclarity.net",
-        2 => "https://api-eu-w-2.pureclarity.net",
-        3 => "https://api-eu-c-1.pureclarity.net",
-        4 => "https://api-us-e-1.pureclarity.net",
-        5 => "https://api-us-e-2.pureclarity.net",
-        6 => "https://api-us-w-1.pureclarity.net",
-        7 => "https://api-us-w-2.pureclarity.net",
-        8 => "https://api-ap-s-1.pureclarity.net",
-        9 => "https://api-ap-ne-1.pureclarity.net",
-        10 => "https://api-ap-ne-2.pureclarity.net",
-        11 => "https://api-ap-se-1.pureclarity.net",
-        12 => "https://api-ap-se-2.pureclarity.net",
-        13 => "https://api-ca-c-1.pureclarity.net",
-        14 => "https://api-sa-e-1.pureclarity.net"
-    ];
+    private $apiUrl = "https://api-eu-w-1.pureclarity.net";
 
     /**
-     * Default PureClarity ClientScript Region SFTP endpoints
+     * Default PureClarity SFTP URL (eu-west-1)
      *
-     * @var string[]
+     * @var string
      */
-    private $sftpRegions = [
-        1 => "https://sftp-eu-w-1.pureclarity.net",
-        2 => "https://sftp-eu-w-2.pureclarity.net",
-        3 => "https://sftp-eu-c-1.pureclarity.net",
-        4 => "https://sftp-us-e-1.pureclarity.net",
-        5 => "https://sftp-us-e-2.pureclarity.net",
-        6 => "https://sftp-us-w-1.pureclarity.net",
-        7 => "https://sftp-us-w-2.pureclarity.net",
-        8 => "https://sftp-ap-s-1.pureclarity.net",
-        9 => "https://sftp-ap-ne-1.pureclarity.net",
-        10 => "https://sftp-ap-ne-2.pureclarity.net",
-        11 => "https://sftp-ap-se-1.pureclarity.net",
-        12 => "https://sftp-ap-se-2.pureclarity.net",
-        13 => "https://sftp-ca-c-1.pureclarity.net",
-        14 => "https://sftp-sa-e-1.pureclarity.net"
-    ];
+    private $sftpUrl = "https://sftp-eu-w-1.pureclarity.net";
 
     /**
      * Gets the PureClarity Admin URL
@@ -130,7 +100,7 @@ class Url
         /* @codingStandardsIgnoreLine */
         $port = getenv('PURECLARITY_FEED_PORT');
         if (empty($url)) {
-            $url = $this->sftpRegions[$region];
+            $url = $this->sftpUrl;
         }
         if (! empty($port)) {
             $url = $url . ":" . $port;
@@ -186,6 +156,6 @@ class Url
             return $pureclarityHostEnv;
         }
 
-        return $this->regions[$region];
+        return $this->apiUrl;
     }
 }

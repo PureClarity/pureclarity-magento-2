@@ -44,10 +44,6 @@ class RegionsTest extends TestCase
             [
                 'label' => 'Europe',
                 'value' => 1
-            ],
-            [
-                'label' => 'USA',
-                'value' => 4
             ]
         ];
 

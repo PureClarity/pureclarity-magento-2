@@ -24,48 +24,18 @@ class UrlTest extends TestCase
     private $scriptUrl = '//pcs.pureclarity.net';
 
     /**
-     * Default PureClarity ClientScript Region URLS
+     * Default PureClarity API URL (eu-west-1)
      *
-     * @var string[]
+     * @var string
      */
-    private $regions = [
-        1 => "https://api-eu-w-1.pureclarity.net",
-        2 => "https://api-eu-w-2.pureclarity.net",
-        3 => "https://api-eu-c-1.pureclarity.net",
-        4 => "https://api-us-e-1.pureclarity.net",
-        5 => "https://api-us-e-2.pureclarity.net",
-        6 => "https://api-us-w-1.pureclarity.net",
-        7 => "https://api-us-w-2.pureclarity.net",
-        8 => "https://api-ap-s-1.pureclarity.net",
-        9 => "https://api-ap-ne-1.pureclarity.net",
-        10 => "https://api-ap-ne-2.pureclarity.net",
-        11 => "https://api-ap-se-1.pureclarity.net",
-        12 => "https://api-ap-se-2.pureclarity.net",
-        13 => "https://api-ca-c-1.pureclarity.net",
-        14 => "https://api-sa-e-1.pureclarity.net"
-    ];
+    private $apiUrl = "https://api-eu-w-1.pureclarity.net";
 
     /**
-     * Default PureClarity ClientScript Region SFTP endpoints
+     * Default PureClarity SFTP URL (eu-west-1)
      *
-     * @var string[]
+     * @var string
      */
-    private $sftpRegions = [
-        1 => "https://sftp-eu-w-1.pureclarity.net",
-        2 => "https://sftp-eu-w-2.pureclarity.net",
-        3 => "https://sftp-eu-c-1.pureclarity.net",
-        4 => "https://sftp-us-e-1.pureclarity.net",
-        5 => "https://sftp-us-e-2.pureclarity.net",
-        6 => "https://sftp-us-w-1.pureclarity.net",
-        7 => "https://sftp-us-w-2.pureclarity.net",
-        8 => "https://sftp-ap-s-1.pureclarity.net",
-        9 => "https://sftp-ap-ne-1.pureclarity.net",
-        10 => "https://sftp-ap-ne-2.pureclarity.net",
-        11 => "https://sftp-ap-se-1.pureclarity.net",
-        12 => "https://sftp-ap-se-2.pureclarity.net",
-        13 => "https://sftp-ca-c-1.pureclarity.net",
-        14 => "https://sftp-sa-e-1.pureclarity.net"
-    ];
+    private $sftpUrl = "https://sftp-eu-w-1.pureclarity.net";
 
     /** @var Url $object */
     private $object;
@@ -109,10 +79,7 @@ class UrlTest extends TestCase
     {
         $localUrl = 'http://127.0.0.1';
         putenv('PURECLARITY_HOST=' . $localUrl);
-
-        foreach (array_keys($this->regions) as $regionId) {
-            $this->assertEquals($localUrl . '/api/productdelta', $this->object->getDeltaEndpoint($regionId));
-        }
+        $this->assertEquals($localUrl . '/api/productdelta', $this->object->getDeltaEndpoint(1));
     }
 
     /**
@@ -121,10 +88,7 @@ class UrlTest extends TestCase
     public function testGetDeltaEndpointReal()
     {
         putenv('PURECLARITY_HOST=');
-
-        foreach ($this->regions as $regionId => $url) {
-            $this->assertEquals($url . '/api/productdelta', $this->object->getDeltaEndpoint($regionId));
-        }
+        $this->assertEquals($this->apiUrl . '/api/productdelta', $this->object->getDeltaEndpoint(1));
     }
 
     /**
@@ -134,13 +98,10 @@ class UrlTest extends TestCase
     {
         $localUrl = 'http://127.0.0.1';
         putenv('PURECLARITY_HOST=' . $localUrl);
-
-        foreach (array_keys($this->regions) as $regionId) {
-            $this->assertEquals(
-                $localUrl . '/api/plugin/signuprequest',
-                $this->object->getSignupRequestEndpointUrl($regionId)
-            );
-        }
+        $this->assertEquals(
+            $localUrl . '/api/plugin/signuprequest',
+            $this->object->getSignupRequestEndpointUrl(1)
+        );
     }
 
     /**
@@ -149,12 +110,10 @@ class UrlTest extends TestCase
     public function testGetSignupRequestEndpointUrlReal()
     {
         putenv('PURECLARITY_HOST=');
-        foreach ($this->regions as $regionId => $url) {
-            $this->assertEquals(
-                $url . '/api/plugin/signuprequest',
-                $this->object->getSignupRequestEndpointUrl($regionId)
-            );
-        }
+        $this->assertEquals(
+            $this->apiUrl . '/api/plugin/signuprequest',
+            $this->object->getSignupRequestEndpointUrl(1)
+        );
     }
 
     /**
@@ -164,13 +123,10 @@ class UrlTest extends TestCase
     {
         $localUrl = 'http://127.0.0.1';
         putenv('PURECLARITY_HOST=' . $localUrl);
-
-        foreach (array_keys($this->regions) as $regionId) {
-            $this->assertEquals(
-                $localUrl . '/api/plugin/signupstatus',
-                $this->object->getSignupStatusEndpointUrl($regionId)
-            );
-        }
+        $this->assertEquals(
+            $localUrl . '/api/plugin/signupstatus',
+            $this->object->getSignupStatusEndpointUrl(1)
+        );
     }
 
     /**
@@ -179,12 +135,10 @@ class UrlTest extends TestCase
     public function testGetSignupStatusEndpointUrlReal()
     {
         putenv('PURECLARITY_HOST=');
-        foreach ($this->regions as $regionId => $url) {
-            $this->assertEquals(
-                $url . '/api/plugin/signupstatus',
-                $this->object->getSignupStatusEndpointUrl($regionId)
-            );
-        }
+        $this->assertEquals(
+            $this->apiUrl . '/api/plugin/signupstatus',
+            $this->object->getSignupStatusEndpointUrl(1)
+        );
     }
 
     /**
@@ -195,12 +149,10 @@ class UrlTest extends TestCase
         $localUrl = 'http://127.0.0.1';
         putenv('PURECLARITY_FEED_HOST=' . $localUrl);
         putenv('PURECLARITY_FEED_PORT=1234');
-        foreach (array_keys($this->regions) as $regionId) {
-            $this->assertEquals(
-                $localUrl . ':1234/',
-                $this->object->getFeedSftpUrl($regionId)
-            );
-        }
+        $this->assertEquals(
+            $localUrl . ':1234/',
+            $this->object->getFeedSftpUrl(1)
+        );
     }
 
     /**
@@ -210,12 +162,10 @@ class UrlTest extends TestCase
     {
         putenv('PURECLARITY_FEED_HOST=');
         putenv('PURECLARITY_FEED_PORT=');
-        foreach ($this->sftpRegions as $regionId => $url) {
-            $this->assertEquals(
-                $url . '/',
-                $this->object->getFeedSftpUrl($regionId)
-            );
-        }
+        $this->assertEquals(
+            $this->sftpUrl . '/',
+            $this->object->getFeedSftpUrl(1)
+        );
     }
 
     /**
@@ -258,12 +208,10 @@ class UrlTest extends TestCase
     {
         $localUrl = 'http://127.0.0.1';
         putenv('PURECLARITY_HOST=' . $localUrl);
-        foreach (array_keys($this->regions) as $regionId) {
-            $this->assertEquals(
-                $localUrl . '/api/serverside',
-                $this->object->getServerSideEndpoint($regionId)
-            );
-        }
+        $this->assertEquals(
+            $localUrl . '/api/serverside',
+            $this->object->getServerSideEndpoint(1)
+        );
     }
 
     /**
@@ -272,11 +220,9 @@ class UrlTest extends TestCase
     public function testGetServerSideEndpointReal()
     {
         putenv('PURECLARITY_HOST=');
-        foreach ($this->regions as $regionId => $url) {
-            $this->assertEquals(
-                $url . '/api/serverside',
-                $this->object->getServerSideEndpoint($regionId)
-            );
-        }
+        $this->assertEquals(
+            $this->apiUrl . '/api/serverside',
+            $this->object->getServerSideEndpoint(1)
+        );
     }
 }

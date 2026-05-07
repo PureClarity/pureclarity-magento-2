@@ -36,7 +36,6 @@ class Request
         'company' => 'Company',
         'password' => 'Password',
         'store_name' => 'Store Name',
-        'region' => 'Region',
         'url' => 'URL'
     ];
 
@@ -113,12 +112,6 @@ class Request
         // check email is validly formatted
         if (isset($params['email']) && !filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = __('Invalid Email Address');
-        }
-
-        // check region is supported
-        $regions = $this->region->getValidRegions();
-        if (isset($params['region']) && !isset($regions[$params['region']])) {
-            $errors[] = __('Invalid Region selected');
         }
 
         // check store ID is valid

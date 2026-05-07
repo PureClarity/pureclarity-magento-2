@@ -38,28 +38,20 @@ class RegionTest extends TestCase
     public function testGetValidRegions()
     {
         $regions = $this->object->getValidRegions();
-        $this->assertEquals(2, count($regions));
+        $this->assertEquals(1, count($regions));
         $this->assertEquals('Europe', $regions[1]);
-        $this->assertEquals('USA', $regions[4]);
     }
 
     public function testToOptionArray()
     {
         $regions = $this->object->toOptionArray();
-        $this->assertEquals(2, count($regions));
+        $this->assertEquals(1, count($regions));
         $this->assertEquals(
             [
                 'label' => 'Europe',
                 'value' => 1
             ],
             $regions[0]
-        );
-        $this->assertEquals(
-            [
-                'label' => 'USA',
-                'value' => 4
-            ],
-            $regions[1]
         );
     }
 }
